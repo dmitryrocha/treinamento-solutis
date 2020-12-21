@@ -1,6 +1,7 @@
 import React from "react"
 import Button from './Buttons'
 import LabelCronometro from './LabelCronometro'
+import './App.css'
 
 class Contador extends React.Component {
     constructor(props) {
@@ -9,10 +10,9 @@ class Contador extends React.Component {
             centesimos: 0,
             segundos: 0,
             minutos: 0,
-            stop: false,
-            nomeStop: "Stop",
+            stop: true,
+            nomeStop: "Play",
             parcial: "",
-            hora: new Date()
         }
     }   
     
@@ -81,23 +81,15 @@ class Contador extends React.Component {
         this.setState({minutos: this.state.minutos +1})
     }
 
-    horaCerta(){
-        this.setState({
-            hora: new Date()
-        })
-    }
-
     componentDidMount() {
         this.timer = setInterval(() => this.incrementar(), 1)
-        this.hora = setInterval(() => this.horaCerta(), 1000)
     }
 
 
     render() {
         return(
             <div>
-                <h1>Hora certa: {this.state.hora.toLocaleTimeString()}</h1>
-                <h1>{this.state.minutos}:{this.state.segundos}:{this.state.centesimos}</h1>
+                <h1 className="my-clock">{this.state.minutos}:{this.state.segundos}:{this.state.centesimos}</h1>
                 <Button onClick={() => {this.zerarCronometro()}} label="Zerar" />
                 <Button onClick={() => {this.pararCronometro()}} label={this.state.nomeStop} />
                 <Button onClick={() => {this.parcialCronometro()}} label="Parcial" />

@@ -7,9 +7,16 @@
   pointer-events: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Frijole&family=Rajdhani:wght@500&display=swap');
+
 .my-title {
-  color: blue;
+  color: red;
+  font-family: 'Rajdhani', sans-serif;;
   font-size: 1cm;
+}
+
+.my-clock {
+  font-family: 'Frijole', cursive;
 }
 
 @media (prefers-reduced-motion: no-preference) {
