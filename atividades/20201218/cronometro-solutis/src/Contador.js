@@ -11,7 +11,8 @@ class Contador extends React.Component {
             minutos: 0,
             stop: false,
             nomeStop: "Stop",
-            parcial: ""
+            parcial: "",
+            hora: new Date()
         }
     }   
     
@@ -80,13 +81,22 @@ class Contador extends React.Component {
         this.setState({minutos: this.state.minutos +1})
     }
 
+    horaCerta(){
+        this.setState({
+            hora: new Date()
+        })
+    }
+
     componentDidMount() {
         this.timer = setInterval(() => this.incrementar(), 1)
+        this.hora = setInterval(() => this.horaCerta(), 1000)
     }
+
 
     render() {
         return(
             <div>
+                <h1>Hora certa: {this.state.hora.toLocaleTimeString()}</h1>
                 <h1>{this.state.minutos}:{this.state.segundos}:{this.state.centesimos}</h1>
                 <Button onClick={() => {this.zerarCronometro()}} label="Zerar" />
                 <Button onClick={() => {this.pararCronometro()}} label={this.state.nomeStop} />
